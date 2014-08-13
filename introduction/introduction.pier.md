@@ -2,13 +2,13 @@
 
 ##Introduction
 
-In order to use Ephestos, Ephestos need first to be installed
+In order to use Ephestos, Ephestos needs first to be installed
 
 
 
 ###1\.  How to install Ephestos
 
-To install Ephestos , Ephestos must be installed both in Blender and in Pharo\.
+To use Ephestos , Ephestos must be installed both in Blender and in Pharo\.
 
 Pharo can be found here
 
@@ -28,9 +28,9 @@ Download Ephestos from its github repo here, clicking on the "download zip"
 
 Decompress the zip file and it should give you an "Ephestos" folder , if not rename the folder\. Copy paste the folder inside the folder that your Blender is putting addons\.
 
-Open in Blender and fo to File `>` User Preferences in addons tab, you will find Ephestos in Development tab\. Enable it\.
+Open in Blender and go to File menu `>` User Preferences in addons tab, you will find Ephestos in Development tab\. Enable it\.
 
-Now go to the 3d View window \(where your 3d objects are displayed\) and ok first make sure the Blender addon is enabled , then go to 3d view window and find Ephestos on the left panel and click "enable Ephestos"\. If the panel is closed then just press t shortcut to make it appear\.
+Now go to the 3d View window \(where your 3d objects are displayed\)  , then go to 3d view window and find Ephestos on the left panel and click "enable Ephestos"\. If the panel is closed then just press t shortcut to make it appear\.
 
 <a name=""></a><figure><img src="figures/ephestos-addon-gui.png" width="40%"></img><figcaption>Ephestos addon GUI</figcaption></figure>
 
@@ -60,7 +60,7 @@ You don't have to enable Ephestos in Pharo because each command you send with it
 
 ###2\.  Using Ephestos
 
-Using Ephestos can happen in two way, one is passing python syntax directly to Blender and another is using Pharo syntax that is converted to python and passed to Blender
+Ephestos can be used in two ways, one is passing python syntax directly to Blender and another is using Pharo syntax that is converted to python and passed to Blender to be executed\.
 
 
 
@@ -68,9 +68,9 @@ Using Ephestos can happen in two way, one is passing python syntax directly to B
 
 So all you have to do is use the Ephestos sendMessage:  , passing the python command as a pharo string\.
 
-First I advice you to resize your pharo windows and blender window so they are side by side to see the result of your command because Ephestos is very fast\.
+First I advice you to resize your pharo window and blender window so they are side by side to see the result of your command because Ephestos is very fast\.
 
-So for example if you want to delete the default Cube or any object you selected do this in the workspace
+For example if you want to delete the default Cube or any object you selected do this in the workspace
 
 
 
@@ -96,12 +96,13 @@ Ephestos sendMessage: 'bpy.ops.mesh.primitive_cube_add()'.
 
 
 
-So as you see already Ephestos is extremely simple\.
+The string passed can be any kind of python command and not limited just to Blender Python API\.
+
 
 
 ####2\.2\.  Using the Python Parser
 
-Also Ephestos comes with a Pharo parser, the parser takes normal pharo syntax and converts to Python so you no longer need to use a string with python syntax for example the previous two command with the parser will be as following
+Also Ephestos comes with a Pharo parser, the parser takes normal pharo syntax and converts it to Python so you no longer need to use a string with python syntax for example the previous two command with the parser will be as following\.
 
 
 
@@ -117,9 +118,9 @@ EphCParser bpy ops mesh primitive_cube_add:'()';e.
 
 Pharo will complain that bpy , ops etc do not exist \. Thats normal because those messages really dont exist \. A menu will pop up for each message that does not exist\. Accept the first top option for each message\. Next time you use the non existent message pharo should not complain\.
 
- I have hacked the object so any message that does not exist to pass it as a python string using Ephestos sendMessage\. This mean you can also send invalid object or even invalid python syntax\. If what you send causes a python error it will send the error back to Pharo and open the debugger to show you exactly where the error is located\.
+ I have hacked the object so any message that does not exist passes it as a python string using Ephestos sendMessage\. This mean you can also send invalid objests or even invalid python syntax\. If what you send causes a python error it will send the error back to Pharo and open the Pharo  debugger to show you exactly where the error is located\.
 
-The e message marks the end of your command , its useful when then messages send are more complex\. For example
+The e message marks the end of your command , its useful when then messages sends are more complex\. For example
 
 
 
@@ -132,7 +133,7 @@ EphCParser bpy data objects: '["Cube"]'; active_material; diffuse_color:'=(1.0 ,
 
 
 
-This will simple change the diffuse\_color of the active material of the object named "Cube"\. Observe that we pass active\_material as ; active\_material ; this is normal Pharo syntax because of how Pharo prioritize messages\. You could use parentheses
+This will simply change the diffuse\_color of the active material of the object named "Cube"\. Observe that we pass active\_material as ; active\_material ; this is normal Pharo syntax because of how Pharo prioritize messages\. You could also use parentheses
 
 
 
@@ -145,14 +146,14 @@ This will simple change the diffuse\_color of the active material of the object 
 
 
 
-but I prefer cascades since they are less to type \. You can also use parentheses and cascades for every message including bpy and ops\.
+but I prefer cascades since they are easier to type \. You can also use parentheses and cascades for every message including bpy and ops\.
 
-But bpy and data do not need parentheses or cascades because they are unary and already Pharo knows that are separate messages\.
+But bpy and data do not need parentheses or cascades because they are unary messages and already Pharo knows that are separate messages\.
 
 So as you see we use  Pharo syntax and yet we execute Python code\.
 
 Actually Ephestos can be used to execute any regular Python code\. Making it possible to use any python library from Pharo and not just Blender\. I am creating also a standalone library called Atlas that will allow Pharo to use any kind of Python library without Blender\.
 
-I am now trying to wrap also more complex python syntax like Python classes and Python functions definitions\. I will also implement the ability to send multiple lines of python commands which is useful for things that have long definitions of classes like definitions of blender operator , blender panels etc\. Using however this existing syntax you can already access all blender properties and blender operators so Ephestos is already very powerful\.
+Next step is trying to wrap also more complex python syntax like Python classes and Python functions definitions\. I will also implement the ability to send multiple lines of python commands which is useful for things that have long definitions of classes like definitions of blender operators , blender panels etc\. Using however this existing syntax you can already access all blender properties and blender operators so Ephestos is already very powerful\.
 
 I hope you found it easy enough to understand, if not , then you can ask any questions by sending me an email at kilon\.alios@gmail\.com
