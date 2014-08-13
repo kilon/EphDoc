@@ -32,6 +32,8 @@ Open in Blender and fo to File `>` User Preferences in addons tab, you will find
 
 Now go to the 3d View window \(where your 3d objects are displayed\) and ok first make sure the Blender addon is enabled , then go to 3d view window and find Ephestos on the left panel and click "enable Ephestos"\. If the panel is closed then just press t shortcut to make it appear\.
 
+<a name=""></a><figure><img src="figures/ephestos-addon-gui.png" width="100%"></img><figcaption>Ephestos addon GUI</figcaption></figure>
+
 The Ephestos GUI should be display "Listening" meaning that the socket server is enabled and listening for any connection from Pharo\.
 
 
